@@ -537,35 +537,10 @@ h1.main, p.demos {
 <BODY>
     
 
-    <audio id="audio" src="music/goldenhour.mp3" mu></audio>
+    <audio id="audio" src="music/goldenhour.mp3" autoplay ></audio>
+  
+    
 
-    <script>
-        window.onload = function () {
-            setTimeout(() => {
-                let audio = document.getElementById("audio");
-                audio.play().catch(error => {
-                    console.log("Trình duyệt chặn autoplay. Cần tương tác trước!", error);
-                });
-            }, 1200); // Delay 1 giây (1000ms)
-        };
-    </script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var playButton = document.getElementById('playButton');
-            var audio = document.getElementById('myAudio');
-    
-            playButton.addEventListener('click', function() {
-                if (audio.paused) {
-                    audio.play();
-                    this.textContent = 'Dừng nhạc';
-                } else {
-                    audio.pause();
-                    this.textContent = 'Phát nhạc';
-                }
-            });
-        });
-    </script>
     <div class="sp-container">
         <div class="sp-content">
             <h2 class="frame-1">It was just two lovers</h2>
