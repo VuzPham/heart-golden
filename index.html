@@ -537,18 +537,59 @@ h1.main, p.demos {
 <BODY>
     
 
-    <audio id="audio" src="music/goldenhour.mp3"></audio>
+    <audio id="myAudio" src="music/goldenhour.mp3" ></audio>
+
+    
+    <button id="playButton">▶ Phát Nhạc</button>
 
     <script>
-        window.onload = function () {
-            setTimeout(() => {
-                document.getElementById("audio").play();
-            }, 1000); // Delay 1 giây (1000ms)
-        };
-    </script>
-    
-    
 
+const startTime = performance.now(); // Lưu thời điểm trình duyệt tải trang
+
+
+document.getElementById("playButton").addEventListener("click", function () {
+    const endTime = performance.now(); // Thời điểm nhấn nút
+    const delayTime = (endTime - startTime) / 1000; // Tính thời gian đã trôi qua (giây)
+
+    // Cập nhật biến CSS
+    document.documentElement.style.setProperty('--delay-time', `${delayTime}s`);
+
+    // Duyệt qua từng frame từ 27 đến 37 và cập nhật animation-delay
+    for (let i = 1; i <= 37; i++) {
+        const element = document.querySelector(`.sp-container h2.frame-${i}`);
+        if (element) {
+            // Lấy animation-delay ban đầu từ CSS
+            const computedDelay = parseFloat(getComputedStyle(element).animationDelay) || 0;
+            
+            // Cộng thêm delayTime
+            const newDelay = computedDelay + delayTime - 0.7;
+            
+            // Cập nhật giá trị mới
+            element.style.animationDelay = `${newDelay}s`;
+        }
+    }
+
+    console.log(`Cộng thêm delay: ${delayTime}s`);
+});
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var playButton = document.getElementById('playButton');
+            var audio = document.getElementById('myAudio');
+    
+            playButton.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    this.textContent = 'Dừng nhạc';
+                    this.style.display = "none"; // Ẩn nút sau khi bấm
+                    
+                } else {
+                    audio.pause();
+                    this.textContent = 'Phát nhạc';
+                    this.style.display = "none"; // Ẩn nút sau khi bấm
+                }
+            });
+        });
+    </script>
     <div class="sp-container">
         <div class="sp-content">
             <h2 class="frame-1">It was just two lovers</h2>
