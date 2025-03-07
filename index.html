@@ -537,8 +537,16 @@ h1.main, p.demos {
 <BODY>
     
 
-    <audio id="audio" src="music/goldenhour.mp3" autoplay ></audio>
-  
+    <audio id="audio" src="music/goldenhour.mp3"></audio>
+
+    <script>
+        window.onload = function () {
+            setTimeout(() => {
+                document.getElementById("audio").play();
+            }, 1000); // Delay 1 giây (1000ms)
+        };
+    </script>
+    
     
 
     <div class="sp-container">
